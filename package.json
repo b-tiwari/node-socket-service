@@ -1,0 +1,37 @@
+{
+  "name": "test-socket-service",
+  "version": "1.0.0",
+  "author": "B.Tiwari",
+  "description": "json",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "github"
+  },
+  "scripts": {
+    "test": "-v",
+    "rimraf": "rimraf",
+    "tsc": "tsc",
+    "clearBuild": "yarn run rimraf -- dist",
+    "build": "yarn run clearBuild && npm run tsc",
+    "dev": "cross-env NODE_ENV=development node dist/server.js",
+    "prod": " cross-env NODE_ENV=production node dist/server.js",
+    "start-dev": "yarn build && yarn run dev",
+    "start": "yarn build && yarn run prod",
+    "node-start-server": "node dist/server.js"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/socket.io": "^2.1.2",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.11",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.4"
+  }
+}
