@@ -1,31 +1,21 @@
 import * as express from "express";
-import * as socketio from "socket.io";
-import * as path from "path";
-import configSocket from "./socket/socket";
+import * as http from "http";
+import * as WebSocket from "ws";
+import configWebSocket from "./ws/ws";
 
 const app = express();
-app.set("port", process.env.PORT || 6565);
+const port = process.env.PORT || 6565;
+app.set("port", port);
 
-var http = require("http").Server(app);
-// set up socket.io and bind it to our
-// http server.
-let io = require("socket.io")(http);
+//initialize a simple http server
+const httpServer = http.createServer(app);
 
-app.get("/", (req: any, res: any) => {
-  res.send("hello world.......");
+//initialize the WebSocket server instance
+const wss = new WebSocket.Server({ server: httpServer });
+
+configWebSocket(wss);
+
+//start our server
+httpServer.listen(port, () => {
+  console.log(`Server started at ${httpServer.address()}:${port}`);
 });
-
-// configure Socket services
-configSocket(io);
-
-// start our simple server up on localhost:3000
-const server = http.listen(6565, function() {
-  console.log(
-    "Hi there!!!, I'm your server, send me requests at http://localhoast:6565"
-  );
-});
-
-// //
-// const port = 6565;
-// io.listen(port);
-// console.log("listening on port ", port);
