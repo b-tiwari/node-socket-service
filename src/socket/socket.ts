@@ -7,6 +7,7 @@ const configSocket = io => {
     console.log("a user connected");
     onClientDataReceived(socket);
   });
+  io.on("disconnect", () => console.log("Client disconnected"));
 };
 
 export default configSocket;

@@ -1,9 +1,9 @@
 const onClientDataReceived = socketService => {
-  socketService.on("processClientData", data => {
-    console.log("socketService subscribed to processClientData message ", data);
+  socketService.on("processClientData", reqData => {
+    console.log("socketService subscribed to processClientDatafadsf====", reqData);
     socketService.emit("dataProcessedOnServer", {
-      serverTime: new Date(),
-      data
+      serverTime2: new Date(),
+      data: 'Hey there! I am your server, How may I help you.',
     });
   });
 };

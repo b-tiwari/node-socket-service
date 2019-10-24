@@ -8,6 +8,7 @@ const configSocket = io => {
         console.log("a user connected");
         clientDataReceived_1.default(socket);
     });
+    io.on("disconnect", () => console.log("Client disconnected"));
 };
 exports.default = configSocket;
 //# sourceMappingURL=socket.js.map
