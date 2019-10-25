@@ -2,6 +2,7 @@ import * as express from "express";
 import * as socketio from "socket.io";
 import * as path from "path";
 import configSocket from "./socket/socket";
+import { readSerial } from "./readSerialData";
 
 const app = express();
 app.set("port", process.env.PORT || 6565);
@@ -23,6 +24,7 @@ const server = http.listen(6565, function() {
   console.log(
     "Hi there!!!, I'm your server, send me requests at http://localhoast:6565"
   );
+  readSerial();
 });
 
 // //
